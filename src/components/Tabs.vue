@@ -111,12 +111,14 @@
                     this.$emit('clicked', { tab: selectedTab });
                     return;
                 }
+                
+                const oldTab = this.getActiveTab();
 
                 this.tabs.forEach(tab => {
                     tab.isActive = (tab.hash === selectedTab.hash);
                 });
 
-                this.$emit('changed', { tab: selectedTab });
+                this.$emit('changed', { tab: selectedTab, oldTab: oldTab });
 
                 this.activeTabHash = selectedTab.hash;
                 this.activeTabIndex = this.getTabIndex(selectedTabHash);
